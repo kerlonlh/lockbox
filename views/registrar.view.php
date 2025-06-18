@@ -10,13 +10,25 @@
   </div>
   <div class="bg-white hero min-h-screen mr-40 text-black">
     <div class="hero-content -mt-20">
-      <form action="/login" method="POST">
+      <form action="/registrar" method="POST">
         <div class="card">
           <div class="card-body">
-            <div class="card-title">Faça seu login</div>
+            <div class="card-title">Crie sua conta</div>
             <label class="form-control">
               <div class="label">
-                <span class="label-text text-black">Email</span>
+                <span class="label-text text-black">Nome</span>
+                <input type="text" class="input input-bordered w-full max-w-xs bg-white">
+              </div>
+            </label>
+            <label class="form-control">
+              <div class="label">
+                <span class="label-text text-black">E-mail</span>
+                <input type="text" class="input input-bordered w-full max-w-xs bg-white">
+              </div>
+            </label>
+            <label class="form-control">
+              <div class="label">
+                <span class="label-text text-black">Confirme seu e-mail</span>
                 <input type="text" class="input input-bordered w-full max-w-xs bg-white">
               </div>
             </label>
@@ -27,8 +39,8 @@
               </div>
             </label>
             <div class="card-actions">
-              <button class="btn btn-primary btn-block">Login</button>
-              <a href="/registrar" class="btn btn-link">Quero me registrar</a>
+              <button class="btn btn-primary btn-block">Registrar</button>
+              <a href="/login" class="btn btn-link">Já tenho uma conta</a>
             </div>
           </div>
         </div>
