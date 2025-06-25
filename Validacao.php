@@ -42,7 +42,7 @@ class Validacao
         )->fetch();
 
         if($resultado) {
-            $this->validacoes[] = "O $campo já está sendo usado.";
+            $this->addError($campo, "O $campo já está sendo usado.");
         }
     }
 
@@ -50,40 +50,44 @@ class Validacao
     private function required($campo, $valor)
     {
         if (strlen($valor) == 0) { 
-            $this->validacoes[] = "O $campo é obrigatório.";
+            $this->addError($campo, "O $campo é obrigatório.");
         }
     }
 
     private function email($campo, $valor)
     {
         if (! filter_var($valor, FILTER_VALIDATE_EMAIL)) {
-            $this->validacoes[] = "O $campo é inválido.";
+            $this->addError($campo, "O $campo é inválido.");
         }
     }
 
     private function confirmed($campo, $valor, $valorDeConfirmacao)
     {
         if ($valor != $valorDeConfirmacao) {
-            $this->validacoes[] = "O $campo de confirmação está diferente.";
+            $this->addError($campo, "O $campo de confirmação está diferente.");
         }
     }
 
     private function min($min, $campo, $valor){
         if(strlen($valor) <= $min){
-            $this->validacoes[] = "$campo precisar ter no mínimo de $min caracteres.";
+            $this->addError($campo, "$campo precisar ter no mínimo de $min caracteres.");
         }
     }
 
     private function max($max, $campo, $valor){
         if(strlen($valor) > $max){
-            $this->validacoes[] = "$campo precisar ter no máximo de $max caracteres.";
+            $this->addError($campo, "$campo precisar ter no máximo de $max caracteres.");
         }
     }
 
     private function strong($campo, $valor){
         if(! strpbrk($valor, '!@#$%^&*()_-[\];.,?|')){
-            $this->validacoes[] = "$campo precisa ter um caracter especial nela.";
+            $this->addError($campo, "$campo precisa ter um caracter especial nela.");
         }
+    }
+
+    private function addError($campo, $erro){
+        $this->validacoes[$campo][] = $erro;
     }
 
     public function naoPassou($nomeCustomizado = null){
