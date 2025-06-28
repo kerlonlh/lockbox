@@ -35,7 +35,7 @@ class RegisterController
             ]
         );
 
-        flash()->push('mensagem', 'Registrado com sucesso!');
+        flash()->push('mensagem', $_POST['nome'] . ' registrado com sucesso!');
 
         return redirect('/login');
     }
