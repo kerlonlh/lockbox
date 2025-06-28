@@ -2,10 +2,10 @@
 
 namespace App\Controllers;
 
-class IndexController{
+class DashboardController{
     public function __invoke()
     {
-       return view ('index');
+        
     }
 
 }
