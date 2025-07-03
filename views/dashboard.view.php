@@ -36,7 +36,7 @@
         </svg>
       </label>
     </form>
-    <a href="#" class="btn btn-primary"> + item</a>
+    <a href="/notas/criar" class="btn btn-primary"> + item</a>
   </div>
   <div class="flex flex-grow py-6">
     <div class="bg-base-300 rounded-l-box w-56">
