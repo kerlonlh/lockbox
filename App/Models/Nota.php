@@ -4,7 +4,8 @@ namespace App\Models;
 
 use Core\Database;
 
-class Nota{
+class Nota
+{
     public $id;
     public $usuario_id;
     public $titulo;
@@ -13,8 +14,9 @@ class Nota{
     public $data_atualizacao;
 
 
-    public static function all($pesquisar = null) {
-        
+    public static function all($pesquisar = null)
+    {
+
         $db = new Database(config('database'));
 
         return $db->query(
@@ -24,5 +26,34 @@ class Nota{
             class: self::class,
             params: array_merge(['usuario_id' => auth()->id], $pesquisar ? ['pesquisar' => "%$pesquisar%"] : [])
         )->fetchAll();
+    }
+
+
+    public static function delete($id)
+    {
+        $db = new Database(config('database'));
+
+        $db->query(
+            query: "DELETE FROM notas WHERE id = :id",
+            params: [
+                'id' => $id
+            ]
+
+        );
+    }
+
+    public static function update($id, $titulo, $nota)
+    {
+        $db = new Database(config('database'));
+
+        $db->query(
+            query: "UPDATE notas SET titulo = :titulo, nota = :nota WHERE id = :id",
+            params: [
+                'titulo' => $titulo,
+                'nota' => $nota,
+                'id' => $id
+            ]
+
+        );
     }
 }
