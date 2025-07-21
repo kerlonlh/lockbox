@@ -14,6 +14,14 @@ class Nota
     public $data_atualizacao;
 
 
+    public function nota() {
+        return $this->nota;
+
+        
+    }
+
+
+
     public static function all($pesquisar = null)
     {
 
