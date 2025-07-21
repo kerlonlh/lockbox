@@ -15,8 +15,12 @@ class Nota
 
 
     public function nota() {
-        return $this->nota;
 
+        if(session()->get('mostrar')){
+            return $this->nota;
+        }
+
+        return str_repeat('*', rand(10,100));
         
     }
 
@@ -54,13 +58,16 @@ class Nota
     {
         $db = new Database(config('database'));
 
+        $set = "titulo = :titulo";
+        if($nota){
+           $set .= ", nota = :nota"; 
+        }
         $db->query(
-            query: "UPDATE notas SET titulo = :titulo, nota = :nota WHERE id = :id",
-            params: [
+            query: "UPDATE notas SET $set WHERE id = :id",
+            params: array_merge([
                 'titulo' => $titulo,
-                'nota' => $nota,
-                'id' => $id
-            ]
+                'id' => $id,
+            ], $nota ? ['nota' => $nota] : [])
 
         );
     }
