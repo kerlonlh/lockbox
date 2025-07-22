@@ -22,8 +22,8 @@ return [
 */
 
     'security' => [
-        'first_key'  => 'mLwzbP3xL7ACLbQQxxx4Tkqvc8mHuVEPq0FuaskL0GQ=',
-        'second_key' => 'bdqXjchRULAGy1fnVtQ1VEovZu57tuSkuRWyxi2PDXtUT9Lfzeiq7YubX+m/ZZr3tj/3zrAhmdYchWm//uvmsA=='
+        'first_key'  => env('ENCRYPT_FIRST_KEY', base64_encode('chave__aleatoria__default')),
+        'second_key' => env('ENCRYPT_SECOND_KEY', base64_decode('chave__aleatoria__default_decode')),
     ]
 
 

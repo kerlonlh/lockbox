@@ -47,7 +47,7 @@ function config($chave = null)
 
         $tmp = null;
 
-        foreach (explode('.', $chave) as $index => $key){
+        foreach (explode('.', $chave) as $index => $key) {
             $tmp = $index == 0 ? $config[$key] : $tmp[$key];
         }
 
@@ -119,9 +119,15 @@ function decrypt($input)
     $data = openssl_decrypt($first_encrypted, $method, $first_key, OPENSSL_RAW_DATA, $iv);
     $second_encrypted_new = hash_hmac('sha3-512', $first_encrypted, $second_key, TRUE);
 
-    if (hash_equals($second_encrypted, $second_encrypted_new)){
+    if (hash_equals($second_encrypted, $second_encrypted_new)) {
         return $data;
     }
 
     return false;
+}
+
+function env($key, $default = null)
+{
+    $env = parse_ini_file(base_path('.env'));
+    return isset($env[$key]) ? $env[$key] : $default;
 }
