@@ -15,13 +15,13 @@ class LoginController
 
     public function login()
     {
-        $email = $_POST['email'];
-        $senha = $_POST['senha'];
+        $email = request()->post('email');
+        $senha = request()->post('senha');
 
         $validacao = Validacao::validar([
             'email' => ['required', 'email'],
             'senha' => ['required']
-        ], $_POST);
+        ], request()->all());
 
         if ($validacao->naoPassou()) {
             return view('login', template: 'guest');
@@ -43,12 +43,13 @@ class LoginController
             params: compact('email')
         )->fetch();
 
-        if (!($usuario && password_verify($_POST['senha'], $usuario->senha))) {
-            flash()->push('validacoes', ['email' => ['Usuário ou senha estão incorretos!']]);
+        if (!($usuario && password_verify($senha, $usuario->senha))) {
+            flash()->push('validacoes', ['senha' => ['Usuário ou senha estão incorretos!']]);
             return view('login', template: 'guest');
         }
 
-        $_SESSION['auth'] = $usuario;
+        session()->set('auth', $usuario);
+       
         flash()->push('mensagem', 'Seja bem vindo ' . $usuario->nome . '!');
         return redirect('/notas');
         

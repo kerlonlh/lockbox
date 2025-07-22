@@ -1,3 +1,5 @@
+<?php $validacoes = flash()->get('validacoes'); ?>
+
 <div class="grid grid-cols-2">
   <div class="hero min-h-screen flex ml-40">
     <div class="hero-content -mt-20">
@@ -11,7 +13,6 @@
   <div class="bg-white hero min-h-screen mr-40 text-black">
     <div class="hero-content -mt-20">
       <form action="/login" method="POST">
-        <?php $validacoes = flash()->get('validacoes'); ?>
         <div class="card">
           <div class="card-body">
             <div class="card-title">Faça seu login</div>
@@ -21,11 +22,8 @@
             <label class="form-control">
               <div class="label">
                 <span class="label-text text-black">Email</span>
-                <input
-                  type="text" name="email"
-                  class="input input-bordered w-full max-w-xs bg-white"
-                  value="<?= old('email') ?>">
               </div>
+              <input type="text" name="email" class="input input-bordered w-full max-w-xs bg-white" value="<?= old('email') ?>"/>
               <?php if (isset($validacoes['email'])) : ?>
                 <div class="label text-xs text-error"><?= $validacoes['email'][0] ?></div>
               <?php endif; ?>
@@ -33,10 +31,8 @@
             <label class="form-control">
               <div class="label">
                 <span class="label-text text-black">Senha</span>
-                <input type="password" name="senha"
-                  class="input input-bordered w-full max-w-xs bg-white"
-                  value="<?= old('senha') ?>">
               </div>
+              <input type="password" name="senha" class="input input-bordered w-full max-w-xs bg-white" value="<?= old('senha') ?>" />
               <?php if (isset($validacoes['senha'])) : ?>
                 <div class="label text-xs text-error"><?= $validacoes['senha'][0] ?></div>
               <?php endif; ?>

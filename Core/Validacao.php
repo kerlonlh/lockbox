@@ -44,7 +44,7 @@ class Validacao
         )->fetch();
 
         if($resultado) {
-            $this->addError($campo, "O $campo já está sendo usado.");
+            $this->addError($campo, "$campo já está sendo usado.");
         }
     }
 
@@ -52,21 +52,21 @@ class Validacao
     private function required($campo, $valor)
     {
         if (strlen($valor) == 0) { 
-            $this->addError($campo, "O $campo é obrigatório.");
+            $this->addError($campo, "$campo é obrigatório.");
         }
     }
 
     private function email($campo, $valor)
     {
         if (! filter_var($valor, FILTER_VALIDATE_EMAIL)) {
-            $this->addError($campo, "O $campo é inválido.");
+            $this->addError($campo, "$campo é inválido.");
         }
     }
 
     private function confirmed($campo, $valor, $valorDeConfirmacao)
     {
         if ($valor != $valorDeConfirmacao) {
-            $this->addError($campo, "O $campo de confirmação está diferente.");
+            $this->addError($campo, "$campo de confirmação está diferente.");
         }
     }
 
@@ -89,6 +89,11 @@ class Validacao
     }
 
     private function addError($campo, $erro){
+        if ($campo == 'senha' or $campo == 'nota'){
+            $erro = "A $erro";
+        }else{
+            $erro = "O $erro";
+        }
         $this->validacoes[$campo][] = $erro;
     }
 

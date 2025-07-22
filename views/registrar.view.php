@@ -15,50 +15,48 @@
         <div class="card">
           <div class="card-body">
             <div class="card-title">Crie sua conta</div>
+            
             <label class="form-control">
               <div class="label">
                 <span class="label-text text-black">Nome</span>
-                <input type="text" name="nome"
-                  class="input input-bordered w-full max-w-xs bg-white"
-                  value="<?= old('nome') ?>">
               </div>
+              <input type="text" name="nome" class="input input-bordered w-full max-w-xs bg-white" value="<?= old('nome') ?>"/>
               <?php if (isset($validacoes['nome'])) : ?>
                 <div class="label text-xs text-error"><?= $validacoes['nome'][0] ?></div>
               <?php endif; ?>
             </label>
+
             <label class="form-control">
               <div class="label">
                 <span class="label-text text-black">E-mail</span>
-                <input type="text" name="email"
-                  class="input input-bordered w-full max-w-xs bg-white"
-                  value="<?= old('email') ?>">
               </div>
+              <input type="text" name="email" class="input input-bordered w-full max-w-xs bg-white" value="<?= old('email') ?>" />
               <?php if (isset($validacoes['email'])) : ?>
                 <div class="label text-xs text-error"><?= $validacoes['email'][0] ?></div>
               <?php endif; ?>
             </label>
+
             <label class="form-control">
               <div class="label">
                 <span class="label-text text-black">Confirme seu e-mail</span>
-                <input type="text" name="email_confirmacao"
-                  class="input input-bordered w-full max-w-xs bg-white"
-                  value="<?= old('email_confirmacao') ?>">
               </div>
+              <input type="text" name="email_confirmacao" class="input input-bordered w-full max-w-xs bg-white" value="<?= old('email_confirmacao') ?>" />
+
               <?php if (isset($validacoes['email_confirmacao'])) : ?>
                 <div class="label text-xs text-error"><?= $validacoes['email_confirmacao'][0] ?></div>
               <?php endif; ?>
             </label>
+
             <label class="form-control">
               <div class="label">
                 <span class="label-text text-black">Senha</span>
-                <input type="password" name="senha"
-                  class="input input-bordered w-full max-w-xs bg-white"
-                  value="<?= old('senha') ?>">
               </div>
+              <input type="password" name="senha" class="input input-bordered w-full max-w-xs bg-white" value="<?= old('senha') ?>" />
               <?php if (isset($validacoes['senha'])) : ?>
                 <div class="label text-xs text-error"><?= $validacoes['senha'][0] ?></div>
               <?php endif; ?>
             </label>
+
             <div class="card-actions">
               <button class="btn btn-primary btn-block">Registrar</button>
               <a href="/login" class="btn btn-link">Já tenho uma conta</a>
