@@ -18,7 +18,7 @@ class Request
             : $default;
     }
 
-    public function All()
+    public function all()
     {
         return $_POST;
     }

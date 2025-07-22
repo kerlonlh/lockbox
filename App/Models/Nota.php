@@ -14,14 +14,14 @@ class Nota
     public $data_atualizacao;
 
 
-    public function nota() {
+    public function nota()
+    {
 
-        if(session()->get('mostrar')){
-            return $this->nota;
+        if (session()->get('mostrar')) {
+            return decrypt($this->nota);
         }
 
-        return str_repeat('*', rand(10,100));
-        
+        return str_repeat('*', rand(10, 100));
     }
 
 
@@ -59,16 +59,33 @@ class Nota
         $db = new Database(config('database'));
 
         $set = "titulo = :titulo";
-        if($nota){
-           $set .= ", nota = :nota"; 
+        if ($nota) {
+            $set .= ", nota = :nota";
         }
         $db->query(
             query: "UPDATE notas SET $set WHERE id = :id",
             params: array_merge([
                 'titulo' => $titulo,
                 'id' => $id,
-            ], $nota ? ['nota' => $nota] : [])
+            ], $nota ? ['nota' => encrypt($nota)] : [])
 
         );
     }
+
+
+    public static function create($data)
+    {
+        $database = new Database(config('database'));
+
+        $database->query(
+            query: "INSERT INTO notas (usuario_id, titulo, nota, data_criacao, data_atualizacao) 
+                    VALUES (:usuario_id, :titulo, :nota, :data_criacao, :data_atualizacao)",
+
+            params: array_merge($data, [
+                'data_criacao' => date('Y-m-d H:i:s'),
+                'data_atualizacao' => date('Y-m-d H:i:s')
+            ])
+        );
+    }
 }
+
