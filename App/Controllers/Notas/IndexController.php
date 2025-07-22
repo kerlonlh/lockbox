@@ -9,6 +9,10 @@ class IndexController
     public function __invoke()
     {
 
+        
+
+
+
         $notas = Nota::all(
             request()->get('pesquisar')
         );
