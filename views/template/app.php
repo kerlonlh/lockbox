@@ -17,7 +17,7 @@
 
         <?php require base_path('views/partials/_navbar.view.php'); ?>
         <?php require base_path('views/partials/_pesquisar.view.php'); ?>
-        <?php require base_path('views/partials/_mensagem.view.php');  ?>
+        <?php require base_path('views/partials/_mensagem.view.php'); ?>
         
         <div class="flex flex-grow pb-6">
              <?php require base_path("views/{$view}.view.php"); ?>

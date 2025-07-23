@@ -2,12 +2,12 @@
 
 function base_path($path)
 {
-    return __DIR__ . '/../' . $path;
+    return __DIR__.'/../'.$path;
 }
 
 function redirect($uri)
 {
-    return header('Location: ' . $uri);
+    return header('Location: '.$uri);
 }
 
 function view($view, $data = [], $template = 'app')
@@ -24,14 +24,14 @@ function dd(...$dump)
     echo '<pre>';
     var_dump($dump);
     echo '</pre>';
-    die();
+    exit();
 }
 
 function abort($code)
 {
     http_response_code($code);
     view($code);
-    die();
+    exit();
 }
 
 function flash()
@@ -50,7 +50,6 @@ function config($chave = null)
         foreach (explode('.', $chave) as $index => $key) {
             $tmp = $index == 0 ? $config[$key] : $tmp[$key];
         }
-
 
         return $tmp;
     }
@@ -74,17 +73,18 @@ function old($campo)
     if (isset($post[$campo])) {
         return $post[$campo];
     }
+
     return '';
 }
 
 function request()
 {
-    return new Core\Request();
+    return new Core\Request;
 }
 
 function session()
 {
-    return new Core\Session();
+    return new Core\Session;
 }
 
 function encrypt($data)
@@ -92,14 +92,15 @@ function encrypt($data)
     $first_key = base64_decode(config('security.first_key'));
     $second_key = base64_decode(config('security.second_key'));
 
-    $method = "aes-256-cbc";
+    $method = 'aes-256-cbc';
     $iv_length = openssl_cipher_iv_length($method);
     $iv = openssl_random_pseudo_bytes($iv_length);
 
     $first_encrypted = openssl_encrypt($data, $method, $first_key, OPENSSL_RAW_DATA, $iv);
-    $second_encrypted = hash_hmac('sha3-512', $first_encrypted, $second_key, TRUE);
+    $second_encrypted = hash_hmac('sha3-512', $first_encrypted, $second_key, true);
 
-    $output = base64_encode($iv . $second_encrypted . $first_encrypted);
+    $output = base64_encode($iv.$second_encrypted.$first_encrypted);
+
     return $output;
 }
 
@@ -109,7 +110,7 @@ function decrypt($input)
     $second_key = base64_decode(config('security.second_key'));
     $mix = base64_decode($input);
 
-    $method = "aes-256-cbc";
+    $method = 'aes-256-cbc';
     $iv_length = openssl_cipher_iv_length($method);
 
     $iv = substr($mix, 0, $iv_length);
@@ -117,7 +118,7 @@ function decrypt($input)
     $first_encrypted = substr($mix, $iv_length + 64);
 
     $data = openssl_decrypt($first_encrypted, $method, $first_key, OPENSSL_RAW_DATA, $iv);
-    $second_encrypted_new = hash_hmac('sha3-512', $first_encrypted, $second_key, TRUE);
+    $second_encrypted_new = hash_hmac('sha3-512', $first_encrypted, $second_key, true);
 
     if (hash_equals($second_encrypted, $second_encrypted_new)) {
         return $data;
@@ -129,5 +130,6 @@ function decrypt($input)
 function env($key, $default = null)
 {
     $env = parse_ini_file(base_path('.env'));
+
     return isset($env[$key]) ? $env[$key] : $default;
 }

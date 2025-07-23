@@ -3,7 +3,6 @@
 namespace App\Controllers\Notas;
 
 use App\Models\Nota;
-use Core\Database;
 use Core\Validacao;
 
 class AtualizarController
@@ -21,7 +20,7 @@ class AtualizarController
         );
 
         if ($validacao->naoPassou()) {
-            return redirect('/notas?id=' . request()->post('id'));
+            return redirect('/notas?id='.request()->post('id'));
         }
 
         Nota::update(
@@ -31,6 +30,7 @@ class AtualizarController
         );
 
         flash()->push('mensagem', 'Registro atualizado com sucesso!');
+
         return redirect('/notas');
     }
 }

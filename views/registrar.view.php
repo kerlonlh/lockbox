@@ -21,9 +21,9 @@
                 <span class="label-text text-black">Nome</span>
               </div>
               <input type="text" name="nome" class="input input-bordered w-full max-w-xs bg-white" value="<?= old('nome') ?>"/>
-              <?php if (isset($validacoes['nome'])) : ?>
+              <?php if (isset($validacoes['nome'])) { ?>
                 <div class="label text-xs text-error"><?= $validacoes['nome'][0] ?></div>
-              <?php endif; ?>
+              <?php } ?>
             </label>
 
             <label class="form-control">
@@ -31,9 +31,9 @@
                 <span class="label-text text-black">E-mail</span>
               </div>
               <input type="text" name="email" class="input input-bordered w-full max-w-xs bg-white" value="<?= old('email') ?>" />
-              <?php if (isset($validacoes['email'])) : ?>
+              <?php if (isset($validacoes['email'])) { ?>
                 <div class="label text-xs text-error"><?= $validacoes['email'][0] ?></div>
-              <?php endif; ?>
+              <?php } ?>
             </label>
 
             <label class="form-control">
@@ -42,9 +42,9 @@
               </div>
               <input type="text" name="email_confirmacao" class="input input-bordered w-full max-w-xs bg-white" value="<?= old('email_confirmacao') ?>" />
 
-              <?php if (isset($validacoes['email_confirmacao'])) : ?>
+              <?php if (isset($validacoes['email_confirmacao'])) { ?>
                 <div class="label text-xs text-error"><?= $validacoes['email_confirmacao'][0] ?></div>
-              <?php endif; ?>
+              <?php } ?>
             </label>
 
             <label class="form-control">
@@ -52,9 +52,9 @@
                 <span class="label-text text-black">Senha</span>
               </div>
               <input type="password" name="senha" class="input input-bordered w-full max-w-xs bg-white" value="<?= old('senha') ?>" />
-              <?php if (isset($validacoes['senha'])) : ?>
+              <?php if (isset($validacoes['senha'])) { ?>
                 <div class="label text-xs text-error"><?= $validacoes['senha'][0] ?></div>
-              <?php endif; ?>
+              <?php } ?>
             </label>
 
             <div class="card-actions">

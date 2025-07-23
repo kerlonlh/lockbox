@@ -16,9 +16,9 @@
                 <span class="label-text">Título</span>
             </div>
             <input type="text" name="titulo" class="input input-bordered w-full">
-            <?php if (isset($validacoes['titulo'])) : ?>
+            <?php if (isset($validacoes['titulo'])) { ?>
                 <div class="label text-xs text-error"><?= $validacoes['titulo'][0] ?></div>
-            <?php endif; ?>
+            <?php } ?>
         </label>
 
         <label for="" class="form-control">
@@ -26,9 +26,9 @@
                 <span class="label-text">Sua nota</span>
             </div>
             <textarea name="nota" class="textarea textarea-bordered h-24 w-full"></textarea>
-            <?php if (isset($validacoes['nota'])) : ?>
+            <?php if (isset($validacoes['nota'])) { ?>
                 <div class="label text-xs text-error"><?= $validacoes['nota'][0] ?></div>
-            <?php endif; ?>
+            <?php } ?>
         </label>
 
         <div class="flex justify-end items-center">

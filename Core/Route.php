@@ -4,7 +4,6 @@ namespace Core;
 
 class Route
 {
-
     public $routes = [];
 
     public function addRoute($httpMethod, $uri, $controller, $middleware = null)
@@ -13,7 +12,7 @@ class Route
             $data = [
                 'class' => $controller,
                 'method' => '__invoke',
-                'middleware' => $middleware
+                'middleware' => $middleware,
             ];
         }
 
@@ -21,16 +20,18 @@ class Route
             $data = [
                 'class' => $controller[0],
                 'method' => $controller[1],
-                'middleware' => $middleware
+                'middleware' => $middleware,
             ];
         }
 
         $this->routes[$httpMethod][$uri] = $data;
     }
+
     public function get($uri, $controller, $middleware = null)
     {
 
         $this->addRoute('GET', $uri, $controller, $middleware);
+
         return $this;
     }
 
@@ -73,7 +74,7 @@ class Route
         $method = $routeInfo['method'];
         $middleware = $routeInfo['middleware'];
 
-        if ($middleware){
+        if ($middleware) {
             $m = new $middleware;
             $m->handle();
         }

@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Models\Usuario;
 use Core\Database;
 use Core\Validacao;
-use App\Models\Usuario;
 
 class LoginController
 {
@@ -20,7 +20,7 @@ class LoginController
 
         $validacao = Validacao::validar([
             'email' => ['required', 'email'],
-            'senha' => ['required']
+            'senha' => ['required'],
         ], request()->all());
 
         if ($validacao->naoPassou()) {
@@ -30,28 +30,28 @@ class LoginController
         $database = new Database(config('database'));
 
         $usuario = $database->query(
-            query: "SELECT * FROM usuarios WHERE email = :email",
+            query: 'SELECT * FROM usuarios WHERE email = :email',
             class: Usuario::class,
             params: compact('email')
         )->fetch();
-
-
 
         $usuario = $database->query(
-            query: "SELECT * FROM usuarios WHERE email = :email",
+            query: 'SELECT * FROM usuarios WHERE email = :email',
             class: Usuario::class,
             params: compact('email')
         )->fetch();
 
-        if (!($usuario && password_verify($senha, $usuario->senha))) {
+        if (! ($usuario && password_verify($senha, $usuario->senha))) {
             flash()->push('validacoes', ['senha' => ['Usuário ou senha estão incorretos!']]);
+
             return view('login', template: 'guest');
         }
 
         session()->set('auth', $usuario);
-       
-        flash()->push('mensagem', 'Seja bem vindo ' . $usuario->nome . '!');
+
+        flash()->push('mensagem', 'Seja bem vindo '.$usuario->nome.'!');
+
         return redirect('/notas');
-        
+
     }
 }

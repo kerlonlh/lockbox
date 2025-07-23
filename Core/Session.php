@@ -1,9 +1,9 @@
 <?php
 
-
 namespace Core;
 
-class Session{
+class Session
+{
     public function get($key, $default = null)
     {
         return isset($_SESSION[$key]) ? $_SESSION[$key] : $default;

@@ -3,7 +3,7 @@
 return [
     'database' => [
         'driver' => 'sqlite',
-        'database' => base_path('database/database.sqlite')
+        'database' => base_path('database/database.sqlite'),
     ],
     /*    'databaseMysql' => [
         'driver' => 'mysql',
@@ -22,9 +22,8 @@ return [
 */
 
     'security' => [
-        'first_key'  => env('ENCRYPT_FIRST_KEY', base64_encode('chave__aleatoria__default')),
+        'first_key' => env('ENCRYPT_FIRST_KEY', base64_encode('chave__aleatoria__default')),
         'second_key' => env('ENCRYPT_SECOND_KEY', base64_decode('chave__aleatoria__default_decode')),
-    ]
-
+    ],
 
 ];
