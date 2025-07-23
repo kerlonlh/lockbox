@@ -1,0 +1,19 @@
+{
+    "name": "kerlo/lockbox",
+    "authors": [
+        {
+            "name": "Kerlon Hinterholz",
+            "email": "kerlon.l.h@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Core\\": "Core/",
+            "App\\": "app/"
+        },
+        "files": [
+            "./Core/functions.php"
+        ]
+    }
+}
